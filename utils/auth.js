@@ -1,23 +1,28 @@
-import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
+const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
-const SECRET_KEY = process.env.JWT_SECRET;
+export const hashPassword = async (password) => {
+  return await bcrypt.hash(password, 10);
+};
 
-export const generateToken = (admin) => {
-  return jwt.sign({ id: admin.id, username: admin.username }, SECRET_KEY, { expiresIn: "1h" });
+export const comparePasswords = async (plain, hashed) => {
+  return await bcrypt.compare(plain, hashed);
+};
+
+export const generateToken = (user) => {
+  return jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, {
+    expiresIn: "1h",
+  });
 };
 
 export const verifyToken = (token) => {
   try {
-    return jwt.verify(token, SECRET_KEY);
-  } catch (error) {
+    return jwt.verify(token, JWT_SECRET);
+  } catch (err) {
     return null;
   }
-};
-
-export const comparePasswords = async (inputPassword, hashedPassword) => {
-  return await bcrypt.compare(inputPassword, hashedPassword);
 };
