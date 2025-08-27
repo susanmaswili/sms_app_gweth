@@ -21,7 +21,8 @@
     "dotenv": "^10.0.0",
     "env": "^0.0.2",
     "exceljs": "^4.4.0",
-    "fastify": "^5.2.2",
+    "fastify": "^5.5.0",
+    "fastify-cors": "^6.1.0",
     "fastify-jwt": "^2.0.0",
     "fastify-mysql": "^2.0.0",
     "fs": "^0.0.1-security",
@@ -30,7 +31,7 @@
     "mime-types": "^3.0.1",
     "mysql2": "^3.14.3",
     "pdfkit": "^0.16.0",
-    "sequelize": "^6.37.6",
+    "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7",
     "vue-router": "^4.5.0"
   },

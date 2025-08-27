@@ -6,7 +6,7 @@ import feeRoutes from './routes/feesRoutes.js';
 import gradeRoutes from './routes/gradesRoutes.js';
 import reportRoutes from './routes/reportsRoutes.js';
 import authRoutes from './routes/authRoutes.js';
-import userRoutes from './routes/userRoutes.js';
+//import userRoutes from './routes/userRoutes.js';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -28,8 +28,12 @@ const __dirname = dirname(__filename);
 fastify.register(fastifyMultipart);
 fastify.register(fastifyFormbody);
 fastify.register(fastifyCors, {
-  origin: ['*'], // allow all for testing; restrict later
+  origin: [
+    'https://sms.gwethfoundation.com',  // your custom domain
+    'https://sms-app-gweth.onrender.com' // Render fallback
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
 });
 
 // Serve uploads folder (with sendFile enabled)
@@ -65,7 +69,7 @@ fastify.register(studentRoutes);
 fastify.register(feeRoutes);
 fastify.register(gradeRoutes);
 fastify.register(reportRoutes);
-fastify.register(userRoutes);
+//fastify.register(userRoutes);
 
 const PORT = process.env.PORT || 5000;
 
