@@ -6,6 +6,7 @@ import feeRoutes from './routes/feesRoutes.js';
 import gradeRoutes from './routes/gradesRoutes.js';
 import reportRoutes from './routes/reportsRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import schoolItemRoutes from "./routes/schoolItemRoutes.js";
 //import userRoutes from './routes/userRoutes.js';
 
 import path from 'path';
@@ -30,7 +31,8 @@ fastify.register(fastifyFormbody);
 fastify.register(fastifyCors, {
   origin: [
     'https://sms.gwethfoundation.com',  // your custom domain
-    'https://sms-app-gweth.onrender.com' // Render fallback
+    'https://sms-app-gweth.onrender.com', // Render fallback
+    'http://localhost:5173'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
@@ -69,6 +71,7 @@ fastify.register(studentRoutes);
 fastify.register(feeRoutes);
 fastify.register(gradeRoutes);
 fastify.register(reportRoutes);
+fastify.register(schoolItemRoutes);
 //fastify.register(userRoutes);
 
 const PORT = process.env.PORT || 5000;
